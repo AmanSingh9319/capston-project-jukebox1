@@ -47,4 +47,12 @@ public class PlayList {
     public int hashCode() {
         return Objects.hash(playListName, playListId);
     }
+
+    @Override
+    public String toString() {
+        return "PlayList{" +
+                "playListName='" + playListName + '\'' +
+                ", playListId=" + playListId +
+                '}';
+    }
 }
