@@ -88,4 +88,15 @@ public class Song {
         return Objects.hash(songId, songName, songDuration, albumName, artistName, genre);
     }
 
+    @Override
+    public String toString() {
+        return "Song{" +
+                "songId=" + songId +
+                ", songName='" + songName + '\'' +
+                ", songDuration='" + songDuration + '\'' +
+                ", albumName='" + albumName + '\'' +
+                ", artistName='" + artistName + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
 }
