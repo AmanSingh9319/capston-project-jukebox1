@@ -16,4 +16,20 @@ public class PlayList {
         this.playListName = playListName;
         this.playListId = playListId;
     }
+
+    public String getPlayListName() {
+        return playListName;
+    }
+
+    public void setPlayListName(String playListName) {
+        this.playListName = playListName;
+    }
+
+    public int getPlayListId() {
+        return playListId;
+    }
+
+    public void setPlayListId(int playListId) {
+        this.playListId = playListId;
+    }
 }
