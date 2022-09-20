@@ -9,4 +9,11 @@ public class PlayList {
     private String playListName;
     private int playListId;
 
+    public PlayList() {
+    }
+
+    public PlayList(String playListName, int playListId) {
+        this.playListName = playListName;
+        this.playListId = playListId;
+    }
 }
