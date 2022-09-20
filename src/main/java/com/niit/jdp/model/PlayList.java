@@ -6,4 +6,7 @@
 package com.niit.jdp.model;
 
 public class PlayList {
+    private String playListName;
+    private int playListId;
+
 }
