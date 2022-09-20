@@ -5,6 +5,5 @@
  */
 package com.niit.jdp.repository;
 
-public class SongRepository {
-
+public class SongOperation {
 }
