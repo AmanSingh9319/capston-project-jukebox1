@@ -38,4 +38,16 @@ public class SongRepository {
         return songList1;
     }
 
+    //search song by album name
+    public List<Song> getSongSearchByAlbumName(List<Song> songList, String album) {
+        Connection getConnection = connection.getDatabaseConnection();
+        List<Song> songList1 = new ArrayList<>();
+        for (Song song : songList) {
+            System.out.println(song.getName());
+            if (song.getName().equalsIgnoreCase(album)) {
+                songList1.add(song);
+            }
+        }
+        return songList1;
+    }
 }
