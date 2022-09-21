@@ -8,25 +8,29 @@ package com.niit.jdp.model;
 import java.util.Objects;
 
 public class Song {
+    //these are attribute
     private int id;
     private String name;
-    private String Duration;
+    private String duration;
     private String albumName;
     private String artistName;
     private String genre;
 
+    //non-parameter constructor
     public Song() {
     }
 
-    public Song(int id, String name, String Duration, String albumName, String artistName, String genre) {
+    //parameter constructor
+    public Song(int id, String name, String duration, String albumName, String artistName, String genre) {
         this.id = id;
         this.name = name;
-        this.Duration = Duration;
+        this.duration = duration;
         this.albumName = albumName;
         this.artistName = artistName;
         this.genre = genre;
     }
 
+    //setter getter
     public int getId() {
         return id;
     }
@@ -44,11 +48,11 @@ public class Song {
     }
 
     public String getDuration() {
-        return Duration;
+        return duration;
     }
 
     public void setDuration(String duration) {
-        this.Duration = duration;
+        this.duration = duration;
     }
 
     public String getAlbumName() {
@@ -80,12 +84,12 @@ public class Song {
         if (this == o) return true;
         if (!(o instanceof Song)) return false;
         Song song = (Song) o;
-        return id == song.id && Objects.equals(name, song.name) && Objects.equals(Duration, song.Duration) && Objects.equals(albumName, song.albumName) && Objects.equals(artistName, song.artistName) && Objects.equals(genre, song.genre);
+        return id == song.id && Objects.equals(name, song.name) && Objects.equals(duration, song.duration) && Objects.equals(albumName, song.albumName) && Objects.equals(artistName, song.artistName) && Objects.equals(genre, song.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, Duration, albumName, artistName, genre);
+        return Objects.hash(id, name, duration, albumName, artistName, genre);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class Song {
         return "Song{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Duration='" + Duration + '\'' +
+                ", duration='" + duration + '\'' +
                 ", albumName='" + albumName + '\'' +
                 ", artistName='" + artistName + '\'' +
                 ", genre='" + genre + '\'' +
