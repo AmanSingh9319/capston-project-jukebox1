@@ -16,5 +16,3 @@ w
 G.idea/sonarlint/issuestore/9/8/98cdda3e00c24ac72814f7f2d393d547a1eae62b,0\d\0d28653d051caac2a22e9fa58452afea58a3fe38
 m
 =src/main/java/com/niit/jdp/repository/PlayListRepository.java,4\4\44f1e74fcae734be19b5f4003c62bb6be620937b
-c
-3src/main/java/com/niit/jdp/service/SongService.java,2\f\2fecdc9ffaf726830e87bbac657c9dc350f67bb5

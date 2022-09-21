@@ -7,6 +7,7 @@ package com.niit.jdp.main;
 
 import com.niit.jdp.model.Song;
 import com.niit.jdp.repository.SongRepository;
+import com.niit.jdp.service.SongService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,13 +22,19 @@ public class JukeBoxImpl {
 
         // creating object of song repository class for call method
         SongRepository songRepository = new SongRepository();
+        //creating object os song servic class
+        SongService songService = new SongService();
 
-        System.out.println("---------All song----------");
-        List<Song> listNames = songRepository.displayAllSong();
-        for (Song listName : listNames) {
-            System.out.println("listName = " + listName);
+        System.out.println("-----------------All song------------------");
+        System.out.println();
+        List<Song> displayAllSong = songRepository.displayAllSong();
+
+        for (Song listName : displayAllSong) {
+            System.out.println(listName);
         }
-
+        System.out.println();
+        System.out.println("----------------------------------------------");
+        System.out.println();
         int task = 0;
         do {
 
@@ -46,12 +53,11 @@ public class JukeBoxImpl {
                     System.out.println("Press 3 to Search song detail by-Artist Name");
                     System.out.println("Press 4 to Search song detail by-Song Name");
                     int choice = scanner.nextInt();
+                    System.out.println("------------------------------------------------------------------------");
 
 
             }
-            while (task < 0) ;
-
-
-        }
+        } while (task < 6);
+    }
 }
 

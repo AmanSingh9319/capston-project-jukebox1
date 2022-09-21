@@ -5,6 +5,13 @@
  */
 package com.niit.jdp.service;
 
+import java.util.Scanner;
+
 public class SongService {
 
+    // make a playing method
+    public void playing() {
+        Scanner sc = new Scanner(System.in);
+
+    }
 }
