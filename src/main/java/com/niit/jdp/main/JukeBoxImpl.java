@@ -5,8 +5,11 @@
  */
 package com.niit.jdp.main;
 
+import com.niit.jdp.service.DatabaseService;
+
 public class JukeBoxImpl {
     public static void main(String[] args) {
-
+        DatabaseService obj = new DatabaseService();
+        obj.printConnectionsStatus();
     }
 }

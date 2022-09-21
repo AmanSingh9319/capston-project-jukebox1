@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class DatabaseService {
     // the url of the database
-    private static final String URL = "Jdbc:mysql://localhost:3306/jukebox1";
+    private static final String URL = "Jdbc:mysql://localhost:3306/jukebox";
     // the credentials of the user trying to log in to the database
     private static final String USERNAME = "root";
     private static final String PASSWORD = "admin";
@@ -28,8 +28,12 @@ public class DatabaseService {
     }
 
     // Create a connection object using the driverManager class
-    public boolean connect() throws ClassNotFoundException, SQLException {
-        databaseConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    public boolean connect() {
+        try {
+            databaseConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return databaseConnection != null;
     }
 
