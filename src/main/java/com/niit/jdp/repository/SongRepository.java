@@ -39,12 +39,24 @@ public class SongRepository {
     }
 
     //search song by album name
-    public List<Song> getSongSearchByAlbumName(List<Song> songList, String album) {
+    public List<Song> getSongSearchByAlbumName(List<Song> songList, String albumName) {
         Connection getConnection = connection.getDatabaseConnection();
         List<Song> songList1 = new ArrayList<>();
         for (Song song : songList) {
             System.out.println(song.getName());
-            if (song.getName().equalsIgnoreCase(album)) {
+            if (song.getName().equalsIgnoreCase(albumName)) {
+                songList1.add(song);
+            }
+        }
+        return songList1;
+    }
+
+    //search song by artist name
+    public List<Song> getSongSearchByArtistName(List<Song> songList, String artistName) {
+        Connection getConnection = connection.getDatabaseConnection();
+        List<Song> songList1 = new ArrayList<>();
+        for (Song song : songList) {
+            if (song.getArtistName().equals(artistName)) {
                 songList1.add(song);
             }
         }
