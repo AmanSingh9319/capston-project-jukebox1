@@ -5,13 +5,12 @@
  */
 package com.niit.jdp.model;
 
-import java.util.List;
 import java.util.Objects;
 
 public class PlayList {
     private int playListId;
     private String playListName;
-    private List<Song> songList;
+
 
     public PlayList() {
     }

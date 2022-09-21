@@ -74,4 +74,10 @@ public class SongRepository {
         }
         return songList1;
     }
+
+    //Display all the song
+    public List<Song> displayAllSong() {
+
+        //creating object of list
+    }
 }
