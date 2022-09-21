@@ -23,6 +23,11 @@ public class JukeBoxImpl {
 
         List<Song> listNames = songRepository.displayAllSong();
 
+        for (Song listName : listNames) {
+            System.out.println("listName = " + listName);
+        }
+
+
     }
 }
 
