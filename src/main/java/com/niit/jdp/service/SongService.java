@@ -3,7 +3,8 @@
  *Date:20-09-2022
  *Created With: Intellij IDEA Community Edition
  */
-package com.niit.jdp.repository;
+package com.niit.jdp.service;
 
-public class SongOperation {
+public class SongService {
+
 }

@@ -5,11 +5,13 @@
  */
 package com.niit.jdp.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class PlayList {
-    private String playListName;
     private int playListId;
+    private String playListName;
+    private List<Song> songList;
 
     public PlayList() {
     }
@@ -47,7 +49,6 @@ public class PlayList {
     public int hashCode() {
         return Objects.hash(playListName, playListId);
     }
-
     @Override
     public String toString() {
         return "PlayList{" +
