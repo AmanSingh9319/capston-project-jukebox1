@@ -5,7 +5,12 @@
  */
 package com.niit.jdp.repository;
 
+import com.niit.jdp.model.Song;
 import com.niit.jdp.service.DatabaseService;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SongRepository {
     /*
@@ -21,6 +26,16 @@ public class SongRepository {
     DatabaseService connection = new DatabaseService();
 
     // search song by name
-
+    public List<Song> getSongSearchBySongName(List<Song> songList, String name) {
+        Connection getConnection = connection.getDatabaseConnection();
+        List<Song> songList1 = new ArrayList<>();
+        for (Song song : songList) {
+            System.out.println(song.getName());
+            if (song.getName().equalsIgnoreCase(name)) {
+                songList1.add(song);
+            }
+        }
+        return songList1;
+    }
 
 }
