@@ -62,4 +62,16 @@ public class SongRepository {
         }
         return songList1;
     }
+
+    //search song by genre
+    public List<Song> getSongSearchByGenre(List<Song> songList, String genre) {
+        Connection getConnection = connection.getDatabaseConnection();
+        List<Song> songList1 = new ArrayList<>();
+        for (Song song : songList) {
+            if (song.getGenre().equals(genre)) {
+                songList1.add(song);
+            }
+        }
+        return songList1;
+    }
 }
