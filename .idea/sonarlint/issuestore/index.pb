@@ -12,3 +12,7 @@ w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
 w
 G.idea/sonarlint/issuestore/8/a/8a6dae537be9f47878c6964c6ee40cab0ca75e28,8\e\8e3d5572111947a6fc62da316a319faf3e927047
+w
+G.idea/sonarlint/issuestore/8/e/8e3d5572111947a6fc62da316a319faf3e927047,9\8\98cdda3e00c24ac72814f7f2d393d547a1eae62b
+w
+G.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,3\0\30f9777ea696a18aa49d3e9967e93a4276065227

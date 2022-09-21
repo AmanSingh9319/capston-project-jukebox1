@@ -6,9 +6,6 @@
 package com.niit.jdp.repository;
 
 public class SongRepository {
-// CRUD
-    // CREATE
-    // READ
-    // UPDATE
-    // DELETE
+
+
 }
