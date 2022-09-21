@@ -38,11 +38,20 @@ public class JukeBoxImpl {
             System.out.println("Press 5 to Play a Song");
             System.out.println("Press 6 to Exit");
             task = scanner.nextInt();
+            System.out.println("--------------------------------------------------------------------------");
+            switch (task) {
+                case 1:
+                    System.out.println("Press 1 to Search song details-by Genre");
+                    System.out.println("Press 2 to Search song detail-by Album");
+                    System.out.println("Press 3 to Search song detail by-Artist Name");
+                    System.out.println("Press 4 to Search song detail by-Song Name");
+                    int choice = scanner.nextInt();
 
 
-        } while (task < 0);
+            }
+            while (task < 0) ;
 
 
-    }
+        }
 }
 
