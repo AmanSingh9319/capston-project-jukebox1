@@ -6,6 +6,9 @@
 package com.niit.jdp.service;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class SongService {
@@ -16,6 +19,13 @@ public class SongService {
         DatabaseService connection = new DatabaseService();
         Connection getConnection = connection.connect();
         String query = "select paths from songPath;";
+        try {
+            Statement st = getConnection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
