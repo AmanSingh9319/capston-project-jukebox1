@@ -5,6 +5,9 @@
  */
 package com.niit.jdp.service;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,8 +25,22 @@ public class SongService {
         try {
             Statement st = getConnection.createStatement();
             ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                File file = new File(rs.getString(1));
+                // creat AudioInputStream object
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                // creat clip reference
+                Clip clip = AudioSystem.getClip();
+                String response = "";
+            }
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
 

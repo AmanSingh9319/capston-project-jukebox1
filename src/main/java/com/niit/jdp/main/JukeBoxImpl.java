@@ -27,6 +27,7 @@ public class JukeBoxImpl {
 
         System.out.println("-----------------All song------------------");
         System.out.println();
+        //display method return value store this object
         List<Song> displayAllSong = songRepository.displayAllSong();
 
         for (Song listName : displayAllSong) {
@@ -57,7 +58,15 @@ public class JukeBoxImpl {
 
 
             }
-        } while (task < 6);
+        } while (task < 0);
+    }
+
+    private static void displayFormat(List<Song> songList) {
+        System.out.format("%-10s %-30s %-20s %-30s %-20s %-30s\n", "Id", "Name", "Duration", "AlbumName", "ArtistName", "Genre");
+        for (Song song : songList) {
+            System.out.format("%-10d %-30s %-20s %-30s %-20s %-30s\n", song.getId(), song.getName(),
+                    song.getDuration(), song.getAlbumName(), song.getAlbumName(), song.getGenre());
+        }
+
     }
 }
-

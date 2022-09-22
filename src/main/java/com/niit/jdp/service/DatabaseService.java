@@ -39,7 +39,7 @@ public class DatabaseService {
         if (databaseConnection == connect()) {
             System.out.println("Connected to the database");
         } else {
-            System.err.println("connected to the database");
+            System.err.println(" Not connected to the database");
         }
         return databaseConnection != null;
     }
