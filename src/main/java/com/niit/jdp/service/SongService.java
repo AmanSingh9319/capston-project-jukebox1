@@ -32,7 +32,34 @@ public class SongService {
                 // creat clip reference
                 Clip clip = AudioSystem.getClip();
                 String response = "";
+                while (!response.equals("Q")) {
+                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
+
+                    response = sc.next();
+
+                    switch (response) {
+                        case ("P"):
+                            clip.start();
+                            break;
+                        case ("S"):
+                            clip.stop();
+                            break;
+                        case ("R"):
+                            clip.setMicrosecondPosition(0);
+                            clip.start();
+                            break;
+                        case ("Q"):
+                            clip.close();
+                            break;
+                        case ("X"):
+                            clip.stop();
+                            return;
+                        default:
+                            System.out.println("Not a valid response");
+                    }
+                }
             }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

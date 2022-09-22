@@ -55,10 +55,75 @@ public class JukeBoxImpl {
                     System.out.println("Press 4 to Search song detail by-Song Name");
                     int choice = scanner.nextInt();
                     System.out.println("------------------------------------------------------------------------");
+                    if (choice == 1) {
+                        System.out.println("Enter Genre name ::");
+                        String genre = scanner.next();
+                        List<Song> getGenre = songRepository.getSongSearchByGenre(displayAllSong, genre);
+                        displayFormat(getGenre);
+                        System.out.println("If you want to play song then press (Y/N)");
+                        String option = scanner.next();
+                        if (option.equals("Y")) {
+                            System.out.println("please enter the song id which you want play");
+                            int songId = scanner.nextInt();
+                        } else {
+                            break;
+                        }
+                    } else if (choice == 2) {
+                        System.out.println("Enter Album name ::");
+                        String album = scanner.next();
+                        List<Song> getAlbum = songRepository.getSongSearchByAlbumName(displayAllSong, album);
+                        displayFormat(getAlbum);
+                        System.out.println("If you want to play song then press (Y/N)");
+                        String option = scanner.next();
+                        if (option.equals("Y")) {
+                            System.out.println("please enter the song id which you want play");
+                            int songId = scanner.nextInt();
+
+                        } else {
+                            break;
+                        }
+                    } else if (choice == 3) {
+                        System.out.println("Enter Artist Name ::");
+                        String artistName = scanner.next();
+                        scanner.nextLine();
+                        List<Song> getArtist = songRepository.getSongSearchByArtistName(displayAllSong, artistName);
+                        displayFormat(getArtist);
+                        System.out.println("If you want to play song then press (Y/N)");
+                        String option = scanner.next();
+                        if (option.equals("Y")) {
+                            System.out.println("please enter the song id which you want play");
+                            int songId = scanner.nextInt();
+                        } else {
+                            break;
+                        }
+                    } else if (choice == 4) {
+                        System.out.println("Enter Song Name ::");
+                        scanner.nextLine();
+                        String songName = scanner.nextLine();
+                        List<Song> getSong = songRepository.getSongSearchBySongName(displayAllSong, songName);
+                        displayFormat(getSong);
+                        System.out.println("If you want to play song then press (Y/N)");
+                        String option = scanner.next();
+                        if (option.equals("Y")) {
+                            System.out.println("please enter the song id which you want play");
+                            int songId = scanner.nextInt();
+
+                        } else {
+                            break;
+                        }
+                    } else
+                        System.out.println("Invalid input");
+                    break;
 
 
+                case 6:
+                    System.out.println("Successful Exit");
+                    System.out.println("---------------------------------------------------");
+                    break;
             }
+
         } while (task < 0);
+
     }
 
     private static void displayFormat(List<Song> songList) {
@@ -67,6 +132,5 @@ public class JukeBoxImpl {
             System.out.format("%-10d %-30s %-20s %-30s %-20s %-30s\n", song.getId(), song.getName(),
                     song.getDuration(), song.getAlbumName(), song.getAlbumName(), song.getGenre());
         }
-
     }
 }
