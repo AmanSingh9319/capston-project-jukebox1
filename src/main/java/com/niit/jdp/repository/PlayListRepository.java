@@ -56,7 +56,6 @@ public class PlayListRepository {
                 count++;
                 playListName.add(new PlayList(playList, count));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

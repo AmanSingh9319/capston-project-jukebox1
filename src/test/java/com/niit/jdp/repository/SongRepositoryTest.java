@@ -38,21 +38,21 @@ class SongRepositoryTest {
     @Test
     void getSongSearchByAlbumName() {
         List<Song> listNames = songRepository.displayAllSong();
-        List<Song> listAlbum = songRepository.getSongSearchByAlbumName(listNames, "Despacita");
+        List<Song> listAlbum = songRepository.getSongSearchByAlbumName(listNames, "hello eorld");
         assertEquals(listAlbum, songRepository.getSongSearchByAlbumName(listAlbum, "Despacita"));
     }
 
     @Test
     void getSongSearchByArtistName() {
         List<Song> listName = songRepository.displayAllSong();
-        List<Song> listArtist = songRepository.getSongSearchByArtistName(listName, "jack");
+        List<Song> listArtist = songRepository.getSongSearchByArtistName(listName, "mak");
         assertEquals(listArtist, songRepository.getSongSearchByArtistName(listArtist, "jack"));
     }
 
     @Test
     void getSongSearchByGenre() {
         List<Song> listName = songRepository.displayAllSong();
-        List<Song> listgenre = songRepository.getSongSearchByGenre(listName, "rock");
+        List<Song> listgenre = songRepository.getSongSearchByGenre(listName, "pop");
         assertEquals(listgenre, songRepository.getSongSearchByGenre(listgenre, "rock"));
     }
 

@@ -8,203 +8,40 @@ package com.niit.jdp.service;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SongService {
-    // make a playing method
-    public void playing() {
-        Scanner sc = new Scanner(System.in);
-        DatabaseService connection = new DatabaseService();
-        Connection getConnection = connection.connect();
-        String query = "select paths from songPath;";
-        try {
-            Statement st = getConnection.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                File file = new File(rs.getString(1));
-                // creat AudioInputStream object
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                // creat clip reference
-                Clip clip = AudioSystem.getClip();
-                String response = "";
-                while (!response.equals("Q")) {
-                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
-                    response = sc.next();
-                    switch (response) {
-                        case ("P"):
-                            clip.start();
-                            break;
-                        case ("S"):
-                            clip.stop();
-                            break;
-                        case ("R"):
-                            clip.setMicrosecondPosition(0);
-                            clip.start();
-                            break;
-                        case ("Q"):
-                            clip.close();
-                            break;
-                        case ("X"):
-                            clip.stop();
-                            return;
-                        default:
-                            System.out.println("Not a valid response");
-                    }
-                }
-            }
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void reversePlaying() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            DatabaseService connection = new DatabaseService();
-            Connection getConnection = connection.connect();
-            String query = "select paths from songPath order by songId desc;";
-            Statement st = getConnection.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                File file = new File(rs.getString(1));
-                // create AudioInputStream object
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-                // create clip reference
-                Clip clip = AudioSystem.getClip();
-                // open audioInputStream to the clip
-                clip.open(audioStream);
-                String response = "";
-                while (!response.equals("Q")) {
-                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
-                    response = sc.next();
-                    switch (response) {
-                        case ("P"):
-                            clip.start();
-                            break;
-                        case ("S"):
-                            clip.stop();
-                            break;
-                        case ("R"):
-                            clip.setMicrosecondPosition(0);
-                            clip.start();
-                            break;
-                        case ("Q"):
-                            clip.close();
-                            break;
-                        case ("X"):
-                            clip.stop();
-                            return;
-                        default:
-                            System.out.println("Not a valid response");
-                    }
-                }
-            }
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void randomPlay() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            DatabaseService connection = new DatabaseService();
-            Connection getConnection = connection.connect();
-            String query = "select paths from songPath order by RAND ();";
-            Statement st = getConnection.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                File file = new File(rs.getString(1));
-                // create AudioInputStream object
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-
-                // create clip reference
-                Clip clip = AudioSystem.getClip();
-
-                // open audioInputStream to the clip
-                clip.open(audioStream);
-
-                String response = "";
-
-                while (!response.equals("Q")) {
-                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
-
-                    response = sc.next();
-
-                    switch (response) {
-                        case ("P"):
-                            clip.start();
-                            break;
-                        case ("S"):
-                            clip.stop();
-                            break;
-                        case ("R"):
-                            clip.setMicrosecondPosition(0);
-                            clip.start();
-                            break;
-                        case ("Q"):
-                            clip.close();
-                            break;
-                        case ("X"):
-                            clip.stop();
-                            return;
-                        default:
-                            System.out.println("Not a valid response");
-                    }
-                }
-            }
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    //this method play a particular song it will take the song id which
+    //you want to play
     public void playParticular(int songId) {
         Scanner sc = new Scanner(System.in);
         try {
             DatabaseService connection = new DatabaseService();
             Connection getConnection = connection.connect();
-            String query = "select paths from songPath where songId = ?";
+            String query = "select paths from songPath where id = ?";
             PreparedStatement ps = getConnection.prepareStatement(query);
             ps.setInt(1, songId);
+            //executeQuery this predefines method
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                //return the value from the table (path of song(query))..
                 File file = new File(rs.getString(1));
                 // create AudioInputStream object
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-
                 // create clip reference
                 Clip clip = AudioSystem.getClip();
-
                 // open audioInputStream to the clip
                 clip.open(audioStream);
-
-                int delay = 1000;
-
                 String response = "";
-
-                while (!response.equals("Q")) {
-                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
-
+                while (!response.equals("X")) {
+                    System.out.println("P = play/Resume, S = Pause, R = Reset, X= End");
                     response = sc.next();
-
                     switch (response) {
                         case ("P"):
                             clip.start();
@@ -215,9 +52,6 @@ public class SongService {
                         case ("R"):
                             clip.setMicrosecondPosition(0);
                             clip.start();
-                            break;
-                        case ("Q"):
-                            clip.close();
                             break;
                         case ("X"):
                             clip.stop();
