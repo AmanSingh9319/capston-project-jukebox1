@@ -8,10 +8,7 @@ package com.niit.jdp.service;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class SongService {
@@ -177,8 +174,68 @@ public class SongService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    public void playParticular(int songId) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            DatabaseService connection = new DatabaseService();
+            Connection getConnection = connection.connect();
+            String query = "select paths from songPath where songId = ?";
+            PreparedStatement ps = getConnection.prepareStatement(query);
+            ps.setInt(1, songId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                File file = new File(rs.getString(1));
+                // create AudioInputStream object
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+
+                // create clip reference
+                Clip clip = AudioSystem.getClip();
+
+                // open audioInputStream to the clip
+                clip.open(audioStream);
+
+                int delay = 1000;
+
+                String response = "";
+
+                while (!response.equals("Q")) {
+                    System.out.println("P = play/Resume, S = Pause, R = Reset, Q = Next, X= End");
+
+                    response = sc.next();
+
+                    switch (response) {
+                        case ("P"):
+                            clip.start();
+                            break;
+                        case ("S"):
+                            clip.stop();
+                            break;
+                        case ("R"):
+                            clip.setMicrosecondPosition(0);
+                            clip.start();
+                            break;
+                        case ("Q"):
+                            clip.close();
+                            break;
+                        case ("X"):
+                            clip.stop();
+                            return;
+                        default:
+                            System.out.println("Not a valid response");
+                    }
+                }
+            }
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
