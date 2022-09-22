@@ -8,6 +8,8 @@ package com.niit.jdp.repository;
 import com.niit.jdp.service.DatabaseService;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class PlayListRepository {
     /*
@@ -24,7 +26,17 @@ public class PlayListRepository {
     public void addIntoDatabase(String playListName) {
         Connection getConnection = connection.connect();
         String query = "Insert into playList values(?);";
-
+        try {
+            PreparedStatement ps = getConnection.prepareStatement(query);
+            ps.setString(1, playListName);
+            int row = ps.executeUpdate();
+            if (row == 1) {
+                System.out.println("Play List successful created");
+            } else {
+                System.out.println("Play List not created");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
 }
