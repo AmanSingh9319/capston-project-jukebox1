@@ -36,11 +36,8 @@ public class JukeBoxImpl {
         int task = 0;
         do {
             System.out.println("Press 1 to search in list");
-            //System.out.println("Press 2 to create play list");
-            //System.out.println("Press 3 to view play list");
-            //System.out.println("Press 4 to insert song into play List");
-            System.out.println("Press 5 to Play a Song");
-            System.out.println("Press 6 to Exit");
+            System.out.println("Press 2 to Play a Song");
+            System.out.println("Press 5 to Exit");
             task = scanner.nextInt();
             System.out.println("--------------------------------------------------------------------------");
             switch (task) {
@@ -116,14 +113,6 @@ public class JukeBoxImpl {
                     } else System.out.println("Invalid input");
                     break;
                 case 2:
-                    System.out.println("Enter play list name::");
-                    break;
-                case 3:
-                    System.out.println("********** Play List ********");
-                    break;
-                case 4:
-                    break;
-                case 5:
                     displayFormat(displayAllSong);
                     System.out.println("Please enter song id which you want to play");
                     int choice2 = scanner.nextInt();
@@ -131,12 +120,18 @@ public class JukeBoxImpl {
                     songService.playParticular(choice2);
                     System.out.println();
                     break;
-                case 6:
+                case 3:
+                    System.out.println("Enter play list name::");
+                    break;
+                case 4:
+                    System.out.println("********** Play List ********");
+                    break;
+                case 5:
                     System.out.println("Successful Exit");
                     System.out.println("-------------------------------------------------------");
                     break;
             }
-        } while (task < 6);
+        } while (task < 5);
     }
     private static void displayFormat(List<Song> songList) {
         System.out.format("%-10s %-30s %-20s %-30s %-20s %-30s\n", "Id", "Name", "Duration", "AlbumName", "ArtistName", "Genre");
