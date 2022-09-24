@@ -21,9 +21,9 @@ public class JukeBoxImpl {
         Scanner scanner = new Scanner(System.in);
         // creating object of song repository class for call method
         SongRepository songRepository = new SongRepository();
-        // creating object of the play list repository
+        // creating object of playlist repository class for call method
         PlayListRepository playListRepository = new PlayListRepository();
-        //creating object os song servic class
+        //creating object os song service class for call method
         SongService songService = new SongService();
         System.out.println("-----------------All song------------------");
         System.out.println();

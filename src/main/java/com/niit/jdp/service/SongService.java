@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SongService {
-
-
     //this method play a particular song it will take the song id which
     //you want to play
     public void playParticular(int songId) {
@@ -77,5 +75,4 @@ public class SongService {
             e.printStackTrace();
         }
     }
-
 }
