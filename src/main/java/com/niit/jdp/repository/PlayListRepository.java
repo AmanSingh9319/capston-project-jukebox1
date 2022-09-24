@@ -6,6 +6,7 @@
 package com.niit.jdp.repository;
 
 import com.niit.jdp.model.PlayList;
+import com.niit.jdp.model.Song;
 import com.niit.jdp.service.DatabaseService;
 
 import java.sql.*;
@@ -60,6 +61,31 @@ public class PlayListRepository {
             e.printStackTrace();
         }
         return playListsName;
+    }
+
+    //get song from playList
+    public List<Song> getSongFromList(int playListId, List<Song> songList) {
+        List<Song> getSong = new ArrayList<>();
+        DatabaseService databaseService = new DatabaseService();
+        Connection getConnection = databaseService.connect();
+        String query = "Select * from playList1 where playListId = " + playListId;
+
+        try {
+            PreparedStatement preparedStatement = getConnection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int playListIdFromTable = resultSet.getInt(1);
+                int songId = resultSet.getInt(2);
+                for (Song song : songList) {
+                    if (songId == song.getId()) {
+                        getSong.add(song);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return getSong;
     }
 }
 
