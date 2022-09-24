@@ -5,11 +5,12 @@
  */
 package com.niit.jdp.repository;
 
+import com.niit.jdp.model.PlayList;
 import com.niit.jdp.service.DatabaseService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayListRepository {
     /*
@@ -38,8 +39,27 @@ public class PlayListRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
-
+    // Show play list
+    public List<PlayList> ShowPlayList() {
+        String playList = null;
+        int count = 0;
+        List<PlayList> playListsName = new ArrayList<>();
+        Connection getConnection = databaseService.connect();
+        String query = "Select * from playList;";
+        try {
+            Statement statement = getConnection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                playList = resultSet.getString(1);
+                count++;
+                playListsName.add(new PlayList(playList, count));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return playListsName;
     }
 }
 
