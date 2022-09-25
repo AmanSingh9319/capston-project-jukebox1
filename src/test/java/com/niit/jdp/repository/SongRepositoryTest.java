@@ -1,65 +1,126 @@
 package com.niit.jdp.repository;
 
-
 import com.niit.jdp.model.Song;
+import com.niit.jdp.service.GenreNotFound;
+import com.niit.jdp.service.SongNotFound;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class SongRepositoryTest {
-    SongRepositoryTest songRepositoryTest = null;
-    SongRepository songRepository = new SongRepository();
-
+    SongRepository songRepository;
+    List<Song> songList;
 
     @BeforeEach
     void setUp() {
-        songRepositoryTest = new SongRepositoryTest();
+        songRepository = new SongRepository();
+        songList = songRepository.displayAllSong();
     }
 
     @AfterEach
     void tearDown() {
-        songRepositoryTest = null;
         songRepository = null;
     }
 
     @Test
     void getSongSearchBySongName() {
-        List<Song> listNames = songRepository.displayAllSong();
-        List<Song> songList = songRepository.getSongSearchBySongName(listNames, "joy");
-        assertEquals(songList, songRepository.getSongSearchBySongName(listNames, "joy"));
+        int expected = 1;
+        int unexpected = 10;
+        List<Song> getSongByName = null;
+        try {
+            getSongByName = songRepository.getSongSearchBySongName(songList, "all time low");
+        } catch (SongNotFound e) {
+            e.printStackTrace();
+        }
+        int actual = getSongByName.size();
+        assertEquals(expected, actual);
 
+    }
+
+    @Test
+    void getSongSearchBySongNames() {
+        int expected = 1;
+        int unexpected = 10;
+        List<Song> getSongByName = null;
+        try {
+            getSongByName = songRepository.getSongSearchBySongName(songList, "all time low");
+        } catch (SongNotFound e) {
+            e.printStackTrace();
+        }
+        int actual = getSongByName.size();
+        assertNotEquals(unexpected, actual);
     }
 
     @Test
     void getSongSearchByAlbumName() {
-        List<Song> listNames = songRepository.displayAllSong();
-        List<Song> listAlbum = songRepository.getSongSearchByAlbumName(listNames, "hello eorld");
-        assertEquals(listAlbum, songRepository.getSongSearchByAlbumName(listAlbum, "Despacita"));
+        int expected = 1;
+        int unexpected = 5;
+        List<Song> getSongSearchByAlbumName = songRepository.getSongSearchByAlbumName(songList, "Random");
+        int actual = getSongSearchByAlbumName.size();
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void getSongSearchByAlbumNames() {
+        int expected = 1;
+        int unexpected = 5;
+        List<Song> getSongSearchByAlbumName = songRepository.getSongSearchByAlbumName(songList, "Random");
+        int actual = getSongSearchByAlbumName.size();
+        assertNotEquals(unexpected, actual);
     }
 
     @Test
     void getSongSearchByArtistName() {
-        List<Song> listName = songRepository.displayAllSong();
-        List<Song> listArtist = songRepository.getSongSearchByArtistName(listName, "mak");
-        assertEquals(listArtist, songRepository.getSongSearchByArtistName(listArtist, "jack"));
+        int expected = 1;
+        int unexpected = 5;
+        List<Song> getSongSearchByArtistName = songRepository.getSongSearchByArtistName(songList, "Sia");
+        int actual = getSongSearchByArtistName.size();
+        assertEquals(expected, actual);
+
+
     }
+
+    @Test
+    void getSongSearchByArtistNames() {
+        int expected = 1;
+        int unexpected = 5;
+        List<Song> getSongSearchByArtistName = songRepository.getSongSearchByArtistName(songList, "Sia");
+        int actual = getSongSearchByArtistName.size();
+        assertNotEquals(unexpected, actual);
+
+
+    }
+
 
     @Test
     void getSongSearchByGenre() {
-        List<Song> listName = songRepository.displayAllSong();
-        List<Song> listgenre = songRepository.getSongSearchByGenre(listName, "pop");
-        assertEquals(listgenre, songRepository.getSongSearchByGenre(listgenre, "rock"));
+        int expected = 1;
+        int unexpected = 5;
+        try {
+            List<Song> getSongSearchByGenre = songRepository.getSongSearchByGenre(songList, "Romantic");
+            int actual = getSongSearchByGenre.size();
+            assertEquals(expected, actual);
+        } catch (GenreNotFound e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void displayAllSong() {
-        List<Song> listName = songRepository.displayAllSong();
-        assertEquals(listName, listName);
-
+    void getSongSearchByGenres() {
+        int expected = 1;
+        int unexpected = 5;
+        try {
+            List<Song> getSongSearchByGenre = songRepository.getSongSearchByGenre(songList, "Romantic");
+            int actual = getSongSearchByGenre.size();
+            assertNotEquals(unexpected, actual);
+        } catch (GenreNotFound e) {
+            e.printStackTrace();
+        }
     }
 }

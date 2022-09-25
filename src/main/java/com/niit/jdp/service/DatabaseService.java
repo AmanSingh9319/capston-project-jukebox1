@@ -17,7 +17,8 @@ public class DatabaseService {
     // the credentials of the user trying to log in to the database
     private static final String USERNAME = "root";
     private static final String PASSWORD = "admin";
-
+    // private field to store the reference of the connection object
+    private Connection databaseConnection;
 
     // Create a connection object using the driverManager class
     public Connection connect() {
@@ -29,10 +30,6 @@ public class DatabaseService {
         }
         return databaseConnection;
     }
-
-    // private field to store the reference of the connection object
-    private Connection databaseConnection;
-
 
     // check connection
     public Boolean printConnectionStatus() {

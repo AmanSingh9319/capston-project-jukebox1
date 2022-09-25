@@ -6,8 +6,10 @@
 package com.niit.jdp.repository;
 
 import com.niit.jdp.model.Song;
-import com.niit.jdp.model.SongInterface;
 import com.niit.jdp.service.DatabaseService;
+import com.niit.jdp.service.GenreNotFound;
+import com.niit.jdp.service.SongInterface;
+import com.niit.jdp.service.SongNotFound;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,7 +64,7 @@ public class SongRepository implements SongInterface {
     }
 
     // search song by name
-    public List<Song> getSongSearchBySongName(List<Song> songList, String name) {
+    public List<Song> getSongSearchBySongName(List<Song> songList, String name) throws SongNotFound {
         //Creates a Statement object for sending SQL statements to the database.
         // SQL statements without parameters are normally executed using Statement objects.
         Connection connection = databaseService.connect();
@@ -72,7 +74,13 @@ public class SongRepository implements SongInterface {
                 songList1.add(song);
             }
         }
-        return songList1;
+        if (songList1.size() == 0) {
+            //assigning value to constructor
+            throw new SongNotFound("song not found");
+
+        } else {
+            return songList1;
+        }
     }
 
     //search song by albumName
@@ -80,8 +88,11 @@ public class SongRepository implements SongInterface {
         Connection connection = databaseService.connect();
         List<Song> songList1 = new ArrayList<>();
         for (Song song : songList) {
-            if (song.getName().equalsIgnoreCase(albumName)) {
+            if (song.getAlbumName().equalsIgnoreCase(albumName)) {
                 songList1.add(song);
+
+            } else {
+
             }
         }
         return songList1;
@@ -97,8 +108,9 @@ public class SongRepository implements SongInterface {
         }
         return songList1;
     }
+
     //search song by genre
-    public List<Song> getSongSearchByGenre(List<Song> songList, String genre) {
+    public List<Song> getSongSearchByGenre(List<Song> songList, String genre) throws GenreNotFound {
         Connection connection = databaseService.connect();
         List<Song> songList1 = new ArrayList<>();
         for (Song song : songList) {
@@ -106,6 +118,16 @@ public class SongRepository implements SongInterface {
                 songList1.add(song);
             }
         }
-        return songList1;
+        if (songList1.size() == 0) {
+            //assigning value to constructor
+            throw new GenreNotFound("Genre not found");
+        } else {
+            return songList1;
+        }
+    }
+
+    public List<Song> sortSongs(List<Song> songList) {
+        songList.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+        return songList;
     }
 }
